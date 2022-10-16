@@ -36,11 +36,35 @@ local packer = require('packer').startup(function(use)
   -- status line
   use 'glepnir/galaxyline.nvim'
 
+  -- show recent files on empty nvim command
+  use 'mhinz/vim-startify'
+
   -- lsp config
   use {
     'neovim/nvim-lspconfig',
     'williamboman/nvim-lsp-installer',
   }
+
+  -- telescope - searching / navigation
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
+
+  -- prettier tabs
+  use {
+    'romgrk/barbar.nvim',
+    requires = {'kyazdani42/nvim-web-devicons'}
+  }
+
+  -- show indentation levels
+  use 'lukas-reineke/indent-blankline.nvim'
+
+  -- highlight variables under cursor
+  use 'RRethy/vim-illuminate'
+
+  -- add configuration reload to vim
+  use 'famiu/nvim-reload'
 
   -- only the first time NeoVim is opened, because that's when Packer gets installed
   if packer_bootstrap then
@@ -52,5 +76,6 @@ end)
 require('plugin-config/nightfox')
 require('plugin-config/gitsigns')
 require('plugin-config/galaxyline')
+require('plugin-config/telescope')
 
 return packer
