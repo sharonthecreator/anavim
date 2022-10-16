@@ -40,7 +40,7 @@ local li = {
 
 -- taken from LunarVim
 local colors = {
-    bg = '#292D38',
+    bg = '#090D08',
     yellow = '#FFEB68',
     dark_yellow = '#D7BA7D',
     cyan = '#4EC9B0',

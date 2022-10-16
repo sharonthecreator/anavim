@@ -20,6 +20,9 @@ vim.api.nvim_set_keymap('n', 'K', '9k', opts)
 vim.api.nvim_set_keymap('v', 'J', '9j', opts)
 vim.api.nvim_set_keymap('v', 'K', '9k', opts)
 
+-- merge line
+vim.api.nvim_set_keymap('', '<C-m>', '<Cmd>join<CR>', opts)
+
 -- stay in normal mode after inserting a new line
 vim.api.nvim_set_keymap('', 'o', 'o <Bs><Esc>', opts)
 vim.api.nvim_set_keymap('', 'O', 'O <Bs><Esc>', opts)

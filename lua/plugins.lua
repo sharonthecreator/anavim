@@ -45,6 +45,18 @@ local packer = require('packer').startup(function(use)
     'williamboman/nvim-lsp-installer',
   }
 
+  -- for LSP autocompletion
+  -- neovim lsp client
+  use 'hrsh7th/cmp-nvim-lsp'
+  -- word autocomplete
+  use 'hrsh7th/cmp-buffer'
+  -- path autocomplete
+  use 'hrsh7th/cmp-path'
+  -- command autocomplete
+  use 'hrsh7th/cmp-cmdline'
+  -- better compeletion engine
+  use 'hrsh7th/nvim-cmp'
+
   -- telescope - searching / navigation
   use {
     'nvim-telescope/telescope.nvim',
@@ -53,7 +65,7 @@ local packer = require('packer').startup(function(use)
 
   -- prettier tabs
   use {
-    'romgrk/barbar.nvim',
+    'akinsho/bufferline.nvim', 
     requires = {'kyazdani42/nvim-web-devicons'}
   }
 
@@ -77,5 +89,7 @@ require('plugin-config/nightfox')
 require('plugin-config/gitsigns')
 require('plugin-config/galaxyline')
 require('plugin-config/telescope')
+require('plugin-config/bufferline')
+require('plugin-config/nvim-cmp')
 
 return packer
