@@ -3,8 +3,6 @@ local install_path = DATA_PATH..'/site/pack/packer/start/packer.nvim'
 
 -- install packer if it's not installed already
 local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
   if fn.empty(fn.glob(install_path)) > 0 then
     fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
     vim.cmd [[packadd packer.nvim]]
@@ -32,7 +30,7 @@ local packer = require('packer').startup(function(use)
 
   -- surround vim
   use 'tpope/vim-surround'
- 
+
   -- status line
   use 'glepnir/galaxyline.nvim'
 
@@ -57,15 +55,28 @@ local packer = require('packer').startup(function(use)
   -- better compeletion engine
   use 'hrsh7th/nvim-cmp'
 
+  -- For vsnip users.
+  use 'hrsh7th/cmp-vsnip'
+  use 'hrsh7th/vim-vsnip'
+
   -- telescope - searching / navigation
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = {'nvim-lua/plenary.nvim'}
+  }
+
+  -- better highlighting
+  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+
+  -- directory tree tab
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {'kyazdani42/nvim-web-devicons'}
   }
 
   -- prettier tabs
   use {
-    'akinsho/bufferline.nvim', 
+    'akinsho/bufferline.nvim',
     requires = {'kyazdani42/nvim-web-devicons'}
   }
 
@@ -74,6 +85,9 @@ local packer = require('packer').startup(function(use)
 
   -- highlight variables under cursor
   use 'RRethy/vim-illuminate'
+
+  -- auto-bracket
+  use 'jiangmiao/auto-pairs'
 
   -- add configuration reload to vim
   use 'famiu/nvim-reload'
@@ -91,5 +105,7 @@ require('plugin-config/galaxyline')
 require('plugin-config/telescope')
 require('plugin-config/bufferline')
 require('plugin-config/nvim-cmp')
+require('plugin-config/nvim-treesitter')
+require('plugin-config/nvim-tree')
 
 return packer

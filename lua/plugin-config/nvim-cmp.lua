@@ -1,4 +1,3 @@
--- TODO( fix
 local cmp = require'cmp'
 cmp.setup({
     snippet = {
@@ -49,13 +48,10 @@ cmp.setup.cmdline(':', {
 
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-require('lspconfig')['clangd'].setup {
-  capabilities = capabilities
-}
-require('lspconfig')['pyright'].setup {
-  capabilities = capabilities
-}
-require('lspconfig')['bashls'].setup {
-  capabilities = capabilities
-}
 
+local servers = { 'clangd', 'pyright', 'sumneko_lua', 'bashls' , 'jsonls', 'cmake' }
+for _, lsp in pairs(servers) do
+  require('lspconfig')[lsp].setup {
+    capabilities = capabilities,
+  }
+end
