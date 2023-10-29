@@ -163,6 +163,14 @@ section.left[6] = {
   }
 }
 
+-- show current path 
+section.left[7] = {
+  FilePath = {
+    provider = 'FilePath',
+    highlight = {colors.white, colors.bg}
+  }
+}
+
 -- diagnostics
 section.right[1] = {
   DiagnosticError = {

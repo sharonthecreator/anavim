@@ -22,7 +22,16 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checkti
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 ]])
-
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+    pattern = { "*" },
+    callback = function(ev)
+        save_cursor = vim.fn.getpos(".")
+        vim.cmd([[%s/\s\+$//e]])
+        vim.fn.setpos(".", save_cursor)
+    end,
+})
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- ================= Scrolling ================= --
 
@@ -49,13 +58,15 @@ vim.bo.smartindent = true
 vim.o.autoindent = true   -- copy the indentation from previous line
 vim.bo.autoindent = true
 vim.o.smarttab = true 	  -- tab infront of a line inserts blanks based on shiftwidth
-
+vim.o.listchars = 'tab:——,lead:·,trail:·'
+vim.cmd("set list")
 
 -- ================= Number column ================= --
 
 vim.wo.number = true
 vim.wo.relativenumber = true
-
+vim.g["signcolumn"] = yes
+vim.opt.cursorline = true
 
 -- ================= Search ================= --
 

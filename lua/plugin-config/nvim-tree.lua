@@ -25,42 +25,36 @@ local list = {
 
 
 require'nvim-tree'.setup {
-  disable_netrw       = true,
-  hijack_netrw        = true,
-  open_on_setup       = false,
-  ignore_ft_on_setup  = {},
-  open_on_tab         = false,
-  hijack_cursor       = false,
-  update_cwd          = false,
-  diagnostics = {
-    enable = false,
-    icons = {
-      hint = "",
-      info = "",
-      warning = "",
-      error = "",
-    }
-  },
+  disable_netrw = true,
+  hijack_netrw = true,
+  hijack_cursor = true,
+  hijack_unnamed_buffer_when_opening = false,
   update_focused_file = {
-    enable      = false,
-    update_cwd  = false,
-    ignore_list = {}
+    enable = true,
+    update_root = false
   },
-  system_open = {
-    cmd  = nil,
-    args = {}
-  },
-  filters = {
-    dotfiles = false,
-    custom = {}
+  tab = {
+    sync = {
+      open = true,
+      close = true
+    }
   },
   view = {
+    preserve_window_proportions = true,
+    adaptive_size = false,
     width = 30,
-    hide_root_folder = false,
-    side = 'left',
-    mappings = {
-      custom_only = false,
-      list = list,
+    side = 'left'
+  },
+  filesystem_watchers = {
+    enable = true
+  },
+  actions = {
+    open_file = {
+      resize_window = true,
+      quit_on_open = true,
     }
+  },
+  renderer = {
+    root_folder_label = false
   }
 }

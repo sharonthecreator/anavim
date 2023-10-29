@@ -55,11 +55,8 @@ vim.api.nvim_set_keymap('', '<A-l>', '<C-w>l', opts)
 vim.api.nvim_set_keymap('', '<S-l>', '<Cmd>tabn<CR>', opts)
 vim.api.nvim_set_keymap('', '<S-h>', '<Cmd>tabp<CR>', opts)
 
--- opening terminal with shortcut
-vim.api.nvim_set_keymap('', '<Leader><CR>', '<Cmd>silent !$TERM &<CR>', opts)
-
 -- clear selection
-vim.api.nvim_set_keymap('', '<C-l>', '<Cmd>noh<CR>', opts) 
+vim.api.nvim_set_keymap('', '<C-l>', '<Cmd>noh<CR>', opts)
 
 -- jumping back and forth
 vim.api.nvim_set_keymap('', '<C-J>', '<C-O>', opts)

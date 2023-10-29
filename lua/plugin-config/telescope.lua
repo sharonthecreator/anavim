@@ -1,6 +1,7 @@
 -- Find files using lua fuctions
 local opts = { silent = true, noremap = true }
 vim.api.nvim_set_keymap('n', '<C-p>', "<Cmd>lua require'telescope.builtin'.find_files()<CR>", {silent=false, noremap=true})
+vim.api.nvim_set_keymap('n', '<C-A-p>', "<Cmd>lua require'telescope.builtin'.oldfiles()<CR>", {silent=false, noremap=true})
 vim.api.nvim_set_keymap('n', '<C-F>', "<Cmd>lua require'telescope.builtin'.live_grep()<CR>", opts)
 vim.api.nvim_set_keymap('n', '<Leader>fb', "<Cmd>lua require'telescope.builtin'.buffers()<CR>", opts)
 vim.api.nvim_set_keymap('n', '<Leader>fh', "<Cmd>lua require'telescope.builtin'.help_tags()<CR>", opts)
@@ -20,13 +21,13 @@ require('telescope').setup {
         layout_strategy = 'horizontal', -- vertical layout
         layout_config = {
             horizontal = {
-                preview_width = 0.6
+                preview_width = 0.5
             }
         },
         file_sorter = require'telescope.sorters'.get_fuzzy_file,
         file_ignore_patterns = {'node_modules/.*'}, -- never search in node_modules/ dir
         generic_sorter = require'telescope.sorters'.get_generic_fuzzy_sorter,
-        display_path = true,
+        path_display = {"truncate"},
         winblend = 0, -- window should not be transparent
         border = {}, -- no border?
         borderchars = {'─', '│', '─', '│', '╭', '╮', '╯', '╰'}, -- border chars
