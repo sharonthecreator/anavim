@@ -18,7 +18,7 @@ local function installServers(names)
 end
 
 -- find a list of available ones here: https://github.com/williamboman/nvim-lsp-installer
-installServers({'bashls', 'sumneko_lua', 'jedi_language_server', 'jsonls', 'clangd', 'cmake'})
+installServers({'bashls', 'lua_ls', 'jedi_language_server', 'jsonls', 'clangd', 'cmake'})
 
 -- setup installed servers
 lsp_installer.on_server_ready(function(server)
@@ -28,7 +28,7 @@ lsp_installer.on_server_ready(function(server)
     -- if server.name == "tsserver" then
     --     opts.root_dir = function() ... end
     -- end
-    if server.name == 'sumneko_lua' then
+    if server.name == 'lua_ls' then
         opts = require'lsp-server-config.lua'
     end
 

@@ -4,7 +4,7 @@ local install_path = DATA_PATH..'/site/pack/packer/start/packer.nvim'
 -- install packer if it's not installed already
 local ensure_packer = function()
   if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'git@gitlab.org:neovim/plugins/packer.nvim', install_path})
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
     vim.cmd [[packadd packer.nvim]]
     return true
   end

@@ -54,11 +54,11 @@ cmp.setup.cmdline(':', {
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lsp = require('lspconfig')
 
-local servers = { 'jedi_language_server', 'sumneko_lua', 'bashls' , 'jsonls', 'cmake' }
+local servers = { 'jedi_language_server', 'lua_ls', 'bashls' , 'jsonls', 'cmake' }
 for _, lsp_server in pairs(servers) do
   lsp[lsp_server].setup {
-    on_attach = on_attach,
     capabilities = capabilities,
+    on_attach = on_attach,
     flags = {debounce_text_changes = 150}
   }
 end
