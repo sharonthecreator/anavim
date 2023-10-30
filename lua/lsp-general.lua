@@ -1,5 +1,8 @@
-local lsp_installer = require'nvim-lsp-installer'
-local lsp_installer_servers = require'nvim-lsp-installer.servers'
+require("mason").setup()
+require("mason-lspconfig").setup {
+    ensure_installed = {'bashls', 'lua_ls', 'jedi_language_server', 'jsonls', 'clangd', 'cmake', "rust_analyzer" },
+    automatic_installation = true,
+}
 
 -- install LSP servers
 local function installServer(name)
@@ -16,26 +19,6 @@ local function installServers(names)
         installServer(name)
     end
 end
-
--- find a list of available ones here: https://github.com/williamboman/nvim-lsp-installer
-installServers({'bashls', 'lua_ls', 'jedi_language_server', 'jsonls', 'clangd', 'cmake'})
-
--- setup installed servers
-lsp_installer.on_server_ready(function(server)
-    local opts = {}
-
-    -- (optional) Customize the options passed to the server
-    -- if server.name == "tsserver" then
-    --     opts.root_dir = function() ... end
-    -- end
-    if server.name == 'lua_ls' then
-        opts = require'lsp-server-config.lua'
-    end
-
-    -- This setup() function is exactly the same as lspconfig's setup function.
-    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/ADVANCED_README.md
-    server:setup(opts)
-end)
 
 -- diagnostic symbols
 local signs = { Error = "", Warn = "", Hint = "", Info =  ""}

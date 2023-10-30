@@ -1,0 +1,1 @@
+-- lsp.<server>.setup(coq.lsp_ensure_capabilities(<your config>)) 

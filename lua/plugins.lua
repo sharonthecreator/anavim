@@ -36,25 +36,30 @@ local packer = require('packer').startup(function(use)
 
   -- lsp config
   use {
-    'neovim/nvim-lspconfig',
-    'williamboman/nvim-lsp-installer',
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
   }
 
   -- for LSP autocompletion
-  -- neovim lsp client
-  use 'hrsh7th/cmp-nvim-lsp'
-  -- word autocomplete
-  use 'hrsh7th/cmp-buffer'
-  -- path autocomplete
-  use 'hrsh7th/cmp-path'
-  -- command autocomplete
-  use 'hrsh7th/cmp-cmdline'
-  -- better compeletion engine
-  use 'hrsh7th/nvim-cmp'
+  use 'ms-jpq/coq_nvim'
+  use 'ms-jpq/coq.artifacts'
+  -- later -> use {'ms-jpq/coq.thirdparty', branch ='3p' }
+
+  -- -- neovim lsp client
+  -- use 'hrsh7th/cmp-nvim-lsp'
+  -- -- word autocomplete
+  -- use 'hrsh7th/cmp-buffer'
+  -- -- path autocomplete
+  -- use 'hrsh7th/cmp-path'
+  -- -- command autocomplete
+  -- use 'hrsh7th/cmp-cmdline'
+  -- -- better compeletion engine
+  -- use 'hrsh7th/nvim-cmp'
 
   -- For vsnip users.
-  use 'hrsh7th/cmp-vsnip'
-  use 'hrsh7th/vim-vsnip'
+  -- use 'hrsh7th/cmp-vsnip'
+  -- use 'hrsh7th/vim-vsnip'
 
   -- telescope - searching / navigation
   use {
@@ -134,7 +139,9 @@ require('plugin-config/galaxyline')
 require('plugin-config/telescope')
 require('plugin-config/alpha-nvim')
 require('plugin-config/bufferline')
-require('plugin-config/nvim-cmp')
+-- require('plugin-config/nvim-cmp')
+require('plugin-config/mason')
+require('plugin-config/coq')
 require('plugin-config/nvim-treesitter')
 require('plugin-config/nvim-tree')
 require('plugin-config/trouble')
