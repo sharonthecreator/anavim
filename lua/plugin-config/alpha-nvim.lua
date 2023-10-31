@@ -1,6 +1,6 @@
 local alpha = require("alpha")
+require"alpha.term"
 local dashboard = require("alpha.themes.dashboard")
-require "alpha.term"
 math.randomseed(os.time())
 
 local function button(sc, txt, keybind, keybind_opts)
@@ -23,7 +23,7 @@ local function get_ascii_image_dim(path)
         end
         height = height + 1
     end
-    -- Increacing the height by 1, 
+    -- Increacing the height by 1,
     -- else it causes the animation to slide off the screen.
     return { width, height + 1}
 end
@@ -70,11 +70,11 @@ dashboard.section.footer.opts.hl = "AlphaFooter"
 
 local opts = {
   layout = {
-    { type = "padding", val = image_height + 5 },
-    terminal,
     { type = "padding", val = 3 },
+    terminal,
+    { type = "padding", val = image_height - 18 },
     heading,
-    { type = "padding", val = 2 },
+    { type = "padding", val = 1 },
     dashboard.section.buttons,
     { type = "padding", val = 1 },
     dashboard.section.footer,
