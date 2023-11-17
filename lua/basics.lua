@@ -67,6 +67,16 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 vim.g["signcolumn"] = yes
 vim.opt.cursorline = true
+vim.api.nvim_create_autocmd('InsertEnter', {
+    command = [[set nocursorline]]
+})
+vim.api.nvim_create_autocmd('InsertLeave', {
+    pattern = { "*" },
+    callback = function(ev)
+        vim.opt.cursorline = true
+        vim.cmd([[highlight CursorLine guibg=#331d5c guifg=fg cterm=underline]])
+    end,
+})
 
 -- ================= Search ================= --
 
