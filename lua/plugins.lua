@@ -88,6 +88,8 @@ local packer = require('packer').startup(function(use)
     }
   }
 
+  use 'lervag/vimtex'
+
   -- show indentation levels
   use 'lukas-reineke/indent-blankline.nvim'
 

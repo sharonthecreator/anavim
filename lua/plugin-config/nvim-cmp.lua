@@ -54,7 +54,7 @@ cmp.setup.cmdline(':', {
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lsp = require('lspconfig')
 
-local servers = { 'pylsp', 'lua_ls', 'bashls' , 'jsonls', 'cmake' }
+local servers = { 'pylsp', 'lua_ls', 'bashls' , 'jsonls', 'cmake', 'texlab'}
 for _, lsp_server in pairs(servers) do
   lsp[lsp_server].setup {
     capabilities = capabilities,

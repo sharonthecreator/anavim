@@ -3,7 +3,7 @@ local mason_lspconfig = require("mason-lspconfig")
 local lspconfig = require("lspconfig")
 
 mason_lspconfig.setup {
-    ensure_installed = {'bashls', 'lua_ls', 'pylsp', 'jsonls', 'clangd', 'cmake', "rust_analyzer" },
+    ensure_installed = {'bashls', 'lua_ls', 'pylsp', 'jsonls', 'clangd', 'cmake', 'rust_analyzer', 'texlab' },
     automatic_installation = true,
 }
 
