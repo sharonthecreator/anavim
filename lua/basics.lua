@@ -112,3 +112,4 @@ vim.o.hidden=true
 
 -- Copy paste between vim and everything else
 vim.o.clipboard = "unnamedplus"
+-- vim.api.nvim_set_option("clipboard","unnamedplus")

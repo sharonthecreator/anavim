@@ -101,6 +101,8 @@ local packer = require('packer').startup(function(use)
 
   use "akinsho/toggleterm.nvim"
 
+  use 'wfxr/minimap.vim'
+
   -- highlight variables under cursor
   use 'RRethy/vim-illuminate'
 
@@ -135,5 +137,6 @@ require('plugin-config/lsp-colors')
 require('plugin-config/lspsaga')
 require('plugin-config/nice-reference')
 require('plugin-config/toggleterm')
+require('plugin-config/minimap')
 
 return packer
