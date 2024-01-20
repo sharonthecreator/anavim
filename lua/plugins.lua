@@ -90,6 +90,15 @@ local packer = require('packer').startup(function(use)
 
   use 'lervag/vimtex'
 
+  use {
+    'floke/noice.nvim',
+    config = function() require('noice').setup {} end,
+    requires = {
+      'MunifTanjim/nui.nvim',
+      'rcarriga/nvim-notify'
+    }
+  }
+
   -- show indentation levels
   use 'lukas-reineke/indent-blankline.nvim'
 
