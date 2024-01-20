@@ -138,5 +138,6 @@ require('plugin-config/lspsaga')
 require('plugin-config/nice-reference')
 require('plugin-config/toggleterm')
 require('plugin-config/minimap')
+require('plugin-config/vimtex')
 
 return packer
