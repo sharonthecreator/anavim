@@ -3,9 +3,10 @@ require("nvim-treesitter.configs").setup {
   ensure_installed = { "bash", "c", "cpp", "json", "lua", "python" },
   auto_install = true,
   highlight = {
-    enable = true
+    enable = true,
+    disable = { "latex" },
   },
   autopairs = {
     enable = true,
-  }
+  },
 }
