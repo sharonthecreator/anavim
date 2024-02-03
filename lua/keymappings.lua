@@ -30,7 +30,7 @@ vim.api.nvim_set_keymap('', 'O', 'O <Bs><Esc>', opts)
 -- mapping that opens .vimrc in a new tab for quick editing
 vim.api.nvim_set_keymap('n', '<Leader>ev', '<Cmd>tabe $MYVIMRC<CR>', opts)
 -- keybinding in openning zathura
-vim.api.nvim_set_keymap('n', '<Leader>z', "<Cmd>!zathura %:p:r.pdf &<CR><CR>", opts)
+vim.api.nvim_set_keymap('n', '<Leader>z', "<Cmd>!zathura %:p:h/build/%:t:r.pdf &<CR><CR>", opts)
 vim.api.nvim_set_keymap('n', '<Leader>vc', "<Cmd>VimtexCompile<CR>", opts)
 vim.api.nvim_set_keymap('n', '<Leader>vr', "<Cmd>VimtexReload<CR>", opts)
 -- mapping that sources the vimrc in the current filea doesn't work, should change all require calls to dofile

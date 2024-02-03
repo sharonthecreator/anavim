@@ -1,5 +1,6 @@
 -- PDF Viewer:
 vim.g['vimtex_view_method'] = 'zathura'
+vim.g['vimtex_view_enabled'] = 1
 vim.g['vimtex_context_pdf_viewer'] = 'okular'
 vim.g['vimtex_quickfix_mode'] = 2
 
@@ -17,6 +18,9 @@ vim.g['vimtex_log_ignore'] = ({
   'specifier changed to',
   'Token not allowed in a PDF string',
 })
+vim.g['vimtex_compiler_latexmk'] = {
+    out_dir='build',
+}
 
 
 vim.g['tex_flavor'] = 'latex'
