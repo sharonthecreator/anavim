@@ -6,6 +6,6 @@ vim.g.coq_settings = {
 local lsp = require "lspconfig"
 local coq = require "coq"
 
-lsp.tsserver.setup{}
-lsp.tsserver.setup(coq.lsp_ensure_capabilities{})
+lsp.ts_ls.setup{}
+lsp.ts_ls.setup(coq.lsp_ensure_capabilities{})
 vim.cmd('COQnow -s')
