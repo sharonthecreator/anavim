@@ -46,6 +46,11 @@ local packer = require('packer').startup(function(use)
   use 'ms-jpq/coq.artifacts'
   -- later -> use {'ms-jpq/coq.thirdparty', branch ='3p' }
 
+  -- Debugger, and UI
+  use 'mfussenegger/nvim-dap'
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
+  use 'theHamsta/nvim-dap-virtual-text'
+
   -- telescope - searching / navigation
   use {
     'nvim-telescope/telescope.nvim',
@@ -101,7 +106,8 @@ local packer = require('packer').startup(function(use)
 
   use "akinsho/toggleterm.nvim"
 
-  use 'gorbit99/codewindow.nvim'
+  -- Minimap, not sure about it yet.
+  -- use 'gorbit99/codewindow.nvim'
 
   -- highlight variables under cursor
   use 'RRethy/vim-illuminate'
@@ -126,6 +132,7 @@ require('plugin-config/nightfox')
 require('plugin-config/gitsigns')
 require('plugin-config/galaxyline')
 require('plugin-config/telescope')
+require('plugin-config/nvim-dap')
 require('plugin-config/alpha-nvim')
 require('plugin-config/bufferline')
 require('plugin-config/coq')
@@ -137,7 +144,7 @@ require('plugin-config/lsp-colors')
 require('plugin-config/lspsaga')
 require('plugin-config/nice-reference')
 require('plugin-config/toggleterm')
-require('plugin-config/codewindow')
 require('plugin-config/vimtex')
+-- require('plugin-config/codewindow')
 
 return packer
