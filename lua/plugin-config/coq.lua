@@ -1,6 +1,7 @@
 vim.g.coq_settings = {
     ["keymap.pre_select"] = true,
     ["completion.skip_after"] = {"{", "}", "[", "]"},
+    ["display.ghost_text.enabled"] = false,
 }
 
 local lsp = require "lspconfig"
