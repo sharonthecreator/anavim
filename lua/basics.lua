@@ -66,7 +66,8 @@ vim.cmd("set list")
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.g["signcolumn"] = yes
--- vim.opt.cursorline = true
+vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
 -- vim.api.nvim_create_autocmd('InsertEnter', {
 --     command = [[set nocursorline]]
 -- })
