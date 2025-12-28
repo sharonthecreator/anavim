@@ -54,7 +54,7 @@ cmp.setup.cmdline(':', {
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lsp = require('lspconfig')
 
-local servers = { 'pylsp', 'lua_ls', 'bashls' , 'jsonls', 'cmake', 'texlab'}
+local servers = { 'pylsp', 'lua_ls', 'bashls' , 'jsonls', 'cmake', 'texlab', 'ts_ls'}
 for _, lsp_server in pairs(servers) do
   lsp[lsp_server].setup {
     capabilities = capabilities,
@@ -77,18 +77,3 @@ lsp["clangd"].setup {
     on_attach = on_attach,
     flags = {debounce_text_changes = 150}
 }
-
--- lsp["pylsp"].setup {
---     capabilities = capabilities,
---     settings = {
---         pylsp = {
---             plugins = {
---                 flake8 = {
---                     config = ".flake8",
---                 },
---             },
---         },
---     },
---     on_attach = on_attach,
---     flags = {debounce_text_changes = 150}
--- }
