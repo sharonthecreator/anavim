@@ -4,9 +4,10 @@ vim.g.coq_settings = {
     ["display.ghost_text.enabled"] = false,
 }
 
-local lsp = require "lspconfig"
-local coq = require "coq"
+local coq = require("coq")
 
-lsp.ts_ls.setup{}
-lsp.ts_ls.setup(coq.lsp_ensure_capabilities{})
+local clangd_opts = coq.lsp_ensure_capabilities({})
+vim.lsp.config('clangd', clangd_opts)
+vim.lsp.enable('clangd')
+
 vim.cmd('COQnow -s')
