@@ -30,6 +30,16 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
         vim.fn.setpos(".", save_cursor)
     end,
 })
+
+-- clang-format on save (LLVM style) for C/C++ files
+vim.api.nvim_create_autocmd("BufWritePost", {
+    pattern = { "*.c", "*.cpp", "*.h", "*.hpp", "*.cc", "*.cxx" },
+    callback = function()
+        local file = vim.fn.expand("%:p")
+        vim.fn.system("clang-format --style=LLVM -i " .. vim.fn.shellescape(file))
+        vim.cmd("silent! checktime")
+    end,
+})
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -68,16 +78,17 @@ vim.wo.relativenumber = true
 vim.g["signcolumn"] = yes
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
--- vim.api.nvim_create_autocmd('InsertEnter', {
---     command = [[set nocursorline]]
--- })
--- vim.api.nvim_create_autocmd('InsertLeave', {
---     pattern = { "*" },
---     callback = function(ev)
---         vim.opt.cursorline = true
---         vim.cmd([[highlight CursorLine guibg=#331d5c guifg=fg cterm=underline]])
---     end,
--- })
+vim.opt.colorcolumn = "80"
+vim.api.nvim_create_autocmd('ColorScheme', {
+    pattern = '*',
+    callback = function()
+        local hl = vim.api.nvim_get_hl(0, { name = 'CursorLine', link = false })
+        vim.api.nvim_set_hl(0, 'CursorColumn', hl)
+        local sp = hl.bg
+            or vim.api.nvim_get_hl(0, { name = 'LineNr', link = false }).fg
+        vim.api.nvim_set_hl(0, 'CursorLine', { underline = true, sp = sp })
+    end,
+})
 
 -- ================= Search ================= --
 
@@ -89,7 +100,6 @@ vim.o.hlsearch = true		-- highlight the search results
 
 -- ================= Performance ================= --
 
-vim.o.lazyredraw = true -- useful for when executing macros.
 vim.o.ttimeoutlen = 10  -- ms to wait for a key code seq to complete
 
 

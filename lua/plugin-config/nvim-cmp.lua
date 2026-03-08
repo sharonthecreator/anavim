@@ -1,66 +1,67 @@
-local cmp = require'cmp'
+local cmp = require('cmp')
+local luasnip = require('luasnip')
+
 cmp.setup({
     snippet = {
-      expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-      end,
+        expand = function(args)
+            luasnip.lsp_expand(args.body)
+        end,
     },
     window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
     },
-    mapping = {
-      ['<Tab>'] = cmp.mapping.select_next_item(),
-      ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-      ['<C-e>'] = cmp.mapping.abort(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    },
+    mapping = cmp.mapping.preset.insert({
+        ['<Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<C-e>'] = cmp.mapping.abort(),
+    }),
     sources = cmp.config.sources({
-      { name = 'nvim_lsp' },
-      { name = 'vsnip' }, -- For vsnip users.
-    }, {
-      { name = 'buffer' },
-    })
-})
-
--- Set configuration for specific filetype.
-cmp.setup.filetype('gitcommit', {
-    sources = cmp.config.sources({
-        { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' },
     }, {
         { name = 'buffer' },
-    })
+        { name = 'path' },
+    }),
 })
 
--- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline({'/', '?'}, {
     mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-        { name = 'buffer' }
-    }
+    sources = {{ name = 'buffer' }}
 })
 
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-        { name = 'path' }
-    }, {
-        { name = 'cmdline' }
-    })
+    sources = cmp.config.sources(
+        {{ name = 'path' }},
+        {{ name = 'cmdline' }}
+    )
 })
 
--- Setup lspconfig.
+-- LSP setup with nvim-cmp capabilities
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lsp = require('lspconfig')
 
-local servers = { 'pylsp', 'lua_ls', 'bashls' , 'jsonls', 'cmake', 'texlab', 'ts_ls'}
+local servers = { 'pylsp', 'lua_ls', 'bashls', 'jsonls', 'cmake', 'texlab', 'ts_ls' }
 for _, lsp_server in pairs(servers) do
-  lsp[lsp_server].setup {
-    capabilities = capabilities,
-    on_attach = on_attach,
-    flags = {debounce_text_changes = 150}
-  }
+    lsp[lsp_server].setup {
+        capabilities = capabilities,
+        on_attach = on_attach,
+        flags = { debounce_text_changes = 150 },
+    }
 end
 
 lsp["clangd"].setup {
@@ -75,5 +76,5 @@ lsp["clangd"].setup {
         "--pch-storage=memory",
     },
     on_attach = on_attach,
-    flags = {debounce_text_changes = 150}
+    flags = { debounce_text_changes = 150 },
 }

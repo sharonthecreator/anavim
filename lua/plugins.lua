@@ -41,10 +41,19 @@ local packer = require('packer').startup(function(use)
     "neovim/nvim-lspconfig",
   }
 
-  -- for LSP autocompletion
-  use 'ms-jpq/coq_nvim'
-  use 'ms-jpq/coq.artifacts'
-  -- later -> use {'ms-jpq/coq.thirdparty', branch ='3p' }
+  -- completion engine + sources
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+
+  -- snippet engine (required by nvim-cmp)
+  use {'L3MON4D3/LuaSnip', run = 'make install_jsregexp'}
+  use 'saadparwaiz1/cmp_luasnip'
+
+  -- Claude AI completions (ghost text + cmp source)
+  use {'milanglacier/minuet-ai.nvim', requires = {'nvim-lua/plenary.nvim'}}
 
   -- Debugger, and UI
   use 'mfussenegger/nvim-dap'
@@ -138,11 +147,12 @@ require('plugin-config/nightfox')
 require('plugin-config/gitsigns')
 require('plugin-config/galaxyline')
 require('plugin-config/telescope')
---require('plugin-config/noice')
+require('plugin-config/noice')
 require('plugin-config/nvim-dap')
 require('plugin-config/alpha-nvim')
 require('plugin-config/bufferline')
-require('plugin-config/coq')
+require('plugin-config/nvim-cmp')
+-- require('plugin-config/minuet-ai')
 require('plugin-config/mason')
 require('plugin-config/nvim-treesitter')
 require('plugin-config/nvim-tree')
