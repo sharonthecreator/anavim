@@ -7,7 +7,7 @@ end
 require("nvim-treesitter.install").prefer_git = true
 
 configs.setup {
-    ensure_installed = { "bash", "c", "cpp", "json", "lua", "python" },
+    ensure_installed = { "bash", "c", "cpp", "json", "lua", "python", "swift" },
     auto_install = true,
     highlight = {
         enable = true,

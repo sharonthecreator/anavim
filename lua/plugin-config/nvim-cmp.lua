@@ -64,6 +64,17 @@ for _, lsp_server in pairs(servers) do
     }
 end
 
+lsp["sourcekit"].setup {
+    capabilities = capabilities,
+    cmd = { "xcrun", "sourcekit-lsp" },
+    root_dir = function(fname)
+        return lsp.util.root_pattern("Package.swift", "buildServer.json", ".git")(fname)
+            or vim.fn.fnamemodify(fname, ':h')
+    end,
+    on_attach = on_attach,
+    flags = { debounce_text_changes = 150 },
+}
+
 lsp["clangd"].setup {
     capabilities = capabilities,
     cmd = {
