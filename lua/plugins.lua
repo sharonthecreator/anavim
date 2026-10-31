@@ -12,6 +12,7 @@ local ensure_packer = function()
 end
 
 local packer_bootstrap = ensure_packer()
+local plugins_missing = fn.empty(fn.glob(DATA_PATH..'/site/pack/packer/start/nightfox.nvim')) > 0
 
 local packer = require('packer').startup(function(use)
   -- packer should manage itself
@@ -73,7 +74,7 @@ local packer = require('packer').startup(function(use)
   }
 
   -- better highlighting
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+  use {'nvim-treesitter/nvim-treesitter', branch = 'master'}
 
   -- directory tree tab
   use {
@@ -136,32 +137,44 @@ local packer = require('packer').startup(function(use)
   -- add configuration reload to vim
   use 'famiu/nvim-reload'
 
-  -- only the first time NeoVim is opened, because that's when Packer gets installed
-  if packer_bootstrap then
+  if packer_bootstrap or plugins_missing then
     require('packer').sync()
   end
 end)
 
 -- plugin specific configs go here
-require('plugin-config/nightfox')
-require('plugin-config/gitsigns')
-require('plugin-config/galaxyline')
-require('plugin-config/telescope')
-require('plugin-config/noice')
-require('plugin-config/nvim-dap')
-require('plugin-config/alpha-nvim')
-require('plugin-config/bufferline')
-require('plugin-config/nvim-cmp')
+if packer_bootstrap or plugins_missing then
+  return packer
+end
+
+local function configure(module)
+  local ok, err = pcall(require, module)
+  if not ok then
+    vim.schedule(function()
+      vim.notify('Anavim: ' .. module .. ': ' .. tostring(err), vim.log.levels.WARN)
+    end)
+  end
+end
+
+configure('plugin-config/nightfox')
+configure('plugin-config/gitsigns')
+configure('plugin-config/galaxyline')
+configure('plugin-config/telescope')
+configure('plugin-config/noice')
+configure('plugin-config/nvim-dap')
+configure('plugin-config/alpha-nvim')
+configure('plugin-config/bufferline')
+configure('plugin-config/nvim-cmp')
 -- require('plugin-config/minuet-ai')
-require('plugin-config/mason')
-require('plugin-config/nvim-treesitter')
-require('plugin-config/nvim-tree')
-require('plugin-config/trouble')
-require('plugin-config/lsp-colors')
-require('plugin-config/lspsaga')
-require('plugin-config/nice-reference')
-require('plugin-config/toggleterm')
-require('plugin-config/vimtex')
+configure('plugin-config/mason')
+configure('plugin-config/nvim-treesitter')
+configure('plugin-config/nvim-tree')
+configure('plugin-config/trouble')
+configure('plugin-config/lsp-colors')
+configure('plugin-config/lspsaga')
+configure('plugin-config/nice-reference')
+configure('plugin-config/toggleterm')
+configure('plugin-config/vimtex')
 -- require('plugin-config/codewindow')
 
 return packer

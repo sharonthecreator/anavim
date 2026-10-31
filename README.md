@@ -4,7 +4,7 @@ Here is a nice cheatsheet of all the special shortcuts you'll need to know when 
 
 **Warning**: this guide is more users which are already comfortable with their Vim skills, if not - you are welcome to do the regular Vim builtin guide.
 
-**Warning2**: install me in ~/.config/nvim (**git clone git@gitlab.org:neovim/anavim.git ~/.config/nvim**)
+Install in `~/.config/nvim` with `git clone https://github.com/sharonthecreator/anavim.git ~/.config/nvim`. On the first launch, Packer installs the plugins; wait for it to finish, then restart Neovim. If a plugin download fails, run `:PackerSync` and restart. Swift Treesitter parser installation requires Tree-sitter CLI 0.25.x; the other configured parsers do not require it.
 
 ### General Actions
 | Action | Shortcut | Description |
